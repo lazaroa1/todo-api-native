@@ -1,11 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {Creators} from './store/ducks/todos';
+import {Creators} from '../../store/ducks/todos';
 import {useSelector, useDispatch} from 'react-redux';
-import {View, Text, Button} from 'react-native';
 import {
   Container,
-  Header,
-  TitleHeader,
   Input,
   AddText,
   AddButton,
@@ -48,10 +45,6 @@ function TodoList() {
 
   return (
     <Container>
-      <Header>
-        <TitleHeader>Todos</TitleHeader>
-      </Header>
-
       <Input
         placeholder={'Adicione um texto'}
         value={todo.txt}

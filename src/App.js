@@ -1,15 +1,17 @@
 import React from 'react';
-import {View} from 'react-native';
 import {Provider} from 'react-redux';
-import TodoList from './TodoList';
 import store from './store';
+import Routes from './routes';
+import {setNavigator} from './service/Navigation';
+import {NavigationContainer} from '@react-navigation/native';
 
 // import { Container } from './styles';
 
 export default function App() {
   return (
     <Provider store={store}>
-      <TodoList />
+      <NavigationContainer />
+      <Routes ref={setNavigator} />
     </Provider>
   );
 }

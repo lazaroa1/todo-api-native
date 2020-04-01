@@ -1,6 +1,17 @@
 import {takeLatest, put, call} from 'redux-saga/effects';
 import {Types, Creators} from '../ducks/todos';
+import {navigate} from '../../service/Navigation';
 import api from '../../service/api';
+
+function* home() {
+  try {
+    yield call(api.get, '/home');
+    yield put(Creators.successTodos());
+    navigate('Todos');
+  } catch {
+    yield put(Creators.failureTodos());
+  }
+}
 
 function* getTodo() {
   try {
@@ -51,4 +62,5 @@ export default [
   takeLatest(Types.ADD_TODO, addTodo),
   takeLatest(Types.REMOVE_TODO, removeTodo),
   takeLatest(Types.EDIT_TODO, editTodo),
+  takeLatest(Types.TODOS, home),
 ];

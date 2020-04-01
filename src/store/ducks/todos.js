@@ -1,6 +1,9 @@
 import {createActions, createReducer} from 'reduxsauce';
 
 export const {Types, Creators} = createActions({
+  todos: [],
+  successTodos: [],
+  failureTodos: [],
   fetchTodos: [],
   successFetchTodos: ['data'],
   failureFetchTodos: [],
@@ -19,6 +22,21 @@ const INITIAL_STATE = {
   data: [],
   loading: false,
 };
+
+const todos = (state, action) => ({
+  ...state,
+  loading: true,
+});
+
+const successTodos = (state, action) => ({
+  ...state,
+  loading: false,
+});
+
+const failureTodos = (state, action) => ({
+  ...state,
+  loading: false,
+});
 
 const fetchTodos = (state, action) => ({
   ...state,
@@ -81,6 +99,9 @@ const failureEditTodo = (state, action) => ({
   loading: false,
 });
 export default createReducer(INITIAL_STATE, {
+  [Types.TODOS]: todos,
+  [Types.SUCCESS_TODOS]: successTodos,
+  [Types.FAILURE_TODOS]: failureTodos,
   [Types.FETCH_TODOS]: fetchTodos,
   [Types.SUCCESS_FETCH_TODOS]: successFetchTodos,
   [Types.FAILURE_FETCH_TODOS]: failureFetchTodos,
